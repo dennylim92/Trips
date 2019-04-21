@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .container {
+            height: 650px;
+            width: 1250px;
+            padding: 15px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #cccccc;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        tr:nth-child(even) {background-color: #f2f2f2;}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Hello {{ session['name'] }}!</h2>
+            <a href="/logout">Logout</a>
+            <form action="/trips/new">
+            <input type="submit" value="Create a new trip!">
+            </form>
+        </div>
+        <div class="trips">
+            <h3>Your trips:</h3>
+            <table>
+                <tr>
+                    <th>Destination</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Plan</th>
+                    <th>Actions</th>
+                </tr>
+                {% for trip in alltrips %}
+                <tr> 
+                    <td><a href="/trips/{{ trip['id'] }}">{{ trip['destination'] }}</a></td>
+                    <input type="hidden" name="trip_id" value="{{ trip['id'] }}">
+                    <td>{{ trip['start_date'] }}</td>
+                    <td>{{ trip['end_date'] }}</td>
+                    <td>{{ trip['plan'] }}</td>
+                    <td><a href="/remove_trip/{{ trip['id'] }}">Remove</a> | <a href="/trips/edit/{{ trip['id'] }}">Edit</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

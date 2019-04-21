@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .container {
+            height: 650px;
+            width: 1250px;
+            padding: 15px;
+        }
+        .mainbox {
+            height: 350px;
+            width: 350px;
+            border: 1px solid black;
+            padding-left: 15px;
+        }
+        textarea {
+            height: 50px;
+            width: 170px;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Hello {{ session['name'] }}! Create a trip!</h2>
+            <a href="/logout">Logout</a>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: red;">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="mainbox">
+            <form action="/create_trip" method="POST">
+                <p>Destination: <input type="text" name="destination"></p>
+                <p>Start Date: <input type="date" name="start"></p>
+                <p>End Date: <input type="date" name="end"></p>
+                <p>Plan: <textarea name="plan"></textarea></p>
+                <input type="submit" value="Cancel" name="button">
+                <input type="submit" value="Submit" name="button">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

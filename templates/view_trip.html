@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .container {
+            height: 650px;
+            width: 1250px;
+            padding: 15px;
+        }
+        .trip_info {
+            border: 2px solid black;
+            height: 270px;
+            width: 400px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Hello {{ session['name'] }}! Read about your trip!</h2>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <br>
+        <h3>{{ session['trip_name'] }}</h3>
+        <div class="trip_info">
+            {% for trip in trips %}
+            <p>Start Date: {{ trip['start_date'] }}</p>
+            <p>End Date: {{ trip['end_date'] }}</p>
+            <p>Created On: {{ trip['created_at'] }}</p>
+            <p>Last Updated: {{ trip['updated_at'] }}</p>
+            <p>Plan: {{ trip['plan'] }}</p>
+            <p>Created By: {{ trip['first_name'] }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
