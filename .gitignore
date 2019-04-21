@@ -1,1 +1,3 @@
 exam_mysqlconnection.py
+*.pyc
+python3Env/
